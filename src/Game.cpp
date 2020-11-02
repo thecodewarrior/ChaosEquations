@@ -2,6 +2,7 @@
 #include "utils.h"
 
 #include <cmath>
+#include <glm/vec2.hpp>
 
 Game::Game(GLFWwindow *window, fs::path resources_dir) : window(window), resources_dir(std::move(resources_dir)) {
     glViewport(0, 0, 800, 600);
@@ -37,12 +38,12 @@ void Game::setup() {
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    simple_shader = std::make_unique<Shader>(resources_dir / "simple.vert", resources_dir / "simple.frag");
+    simple_shader = std::make_shared<albedo::Shader>(resources_dir, "simple.vert", "simple.frag");
+    simple_type = std::make_unique<SimpleRenderType>(simple_shader);
 
     glUseProgram(simple_shader->program);
 
     time_location = glGetUniformLocation(simple_shader->program, "time");
-
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
@@ -63,6 +64,9 @@ void Game::draw_frame() {
     glUseProgram(simple_shader->program);
     float timeValue = glfwGetTime();
     glUniform1f(time_location, timeValue);
-    glBindVertexArray(vao);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+
+    simple_type->pos(-0.5, -0.5, 0.0).color(1, 0, 0, 1).end_vertex();
+    simple_type->pos( 0.5, -0.5, 0.0).color(0, 1, 0, 1).end_vertex();
+    simple_type->pos( 0.0,  0.5, 0.0).color(0, 0, 1, 1).end_vertex();
+    simple_type->draw(GL_TRIANGLES);
 }
