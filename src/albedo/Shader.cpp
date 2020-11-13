@@ -49,4 +49,12 @@ namespace albedo {
             throw ShaderCompilationException(log);
         }
     }
+
+    GLint Shader::attribute_location(const std::string &name) const {
+        return glGetAttribLocation(program, name.c_str());
+    }
+
+    GLint Shader::uniform_location(const std::string &name) const {
+        return glGetUniformLocation(program, name.c_str());
+    }
 }

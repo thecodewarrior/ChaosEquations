@@ -39,11 +39,9 @@ void Game::setup() {
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
     simple_shader = std::make_shared<albedo::Shader>(resources_dir, "simple.vert", "simple.frag");
-    simple_type = std::make_unique<SimpleRenderType>(simple_shader);
+    simple_buffer = std::make_unique<SimpleRenderBuffer>(simple_shader);
 
     glUseProgram(simple_shader->program);
-
-    time_location = glGetUniformLocation(simple_shader->program, "time");
 
     glGenVertexArrays(1, &vao);
     glBindVertexArray(vao);
@@ -61,12 +59,9 @@ void Game::draw_frame() {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    glUseProgram(simple_shader->program);
-    float timeValue = glfwGetTime();
-    glUniform1f(time_location, timeValue);
-
-    simple_type->pos(-0.5, -0.5, 0.0).color(1, 0, 0, 1).end_vertex();
-    simple_type->pos( 0.5, -0.5, 0.0).color(0, 1, 0, 1).end_vertex();
-    simple_type->pos( 0.0,  0.5, 0.0).color(0, 0, 1, 1).end_vertex();
-    simple_type->draw(GL_TRIANGLES);
+    simple_buffer->time->set(glfwGetTime());
+    simple_buffer->pos(-0.5, -0.5, 0.0).color(1, 0, 0, 1).end_vertex();
+    simple_buffer->pos( 0.5, -0.5, 0.0).color(0, 1, 0, 1).end_vertex();
+    simple_buffer->pos( 0.0,  0.5, 0.0).color(0, 0, 1, 1).end_vertex();
+    simple_buffer->draw(GL_TRIANGLES);
 }

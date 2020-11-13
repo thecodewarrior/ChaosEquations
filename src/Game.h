@@ -1,9 +1,9 @@
 #ifndef CHAOSEQUATIONS_GAME_H
 #define CHAOSEQUATIONS_GAME_H
 
+#include "SimpleRenderBuffer.h"
 #include "albedo/Shader.h"
 #include "common_gl.h"
-#include "SimpleRenderType.h"
 #include <boost/filesystem.hpp>
 
 namespace fs = boost::filesystem;
@@ -15,8 +15,7 @@ private:
     GLuint vbo;
     GLuint vao;
     std::shared_ptr<albedo::Shader> simple_shader;
-    std::unique_ptr<SimpleRenderType> simple_type;
-    GLint time_location;
+    std::unique_ptr<SimpleRenderBuffer> simple_buffer;
 
 public:
     Game(GLFWwindow *window, fs::path resources_dir);

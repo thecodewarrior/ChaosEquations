@@ -3,7 +3,7 @@
 namespace albedo {
     VertexAttributeBase::VertexAttributeBase(
             const std::shared_ptr<VertexBuffer> &buffer,
-            GLuint index, int size
-    ) : buffer(buffer), index(index), size(size), offset(buffer->reserve(size)) {
+            std::string name, int size
+    ) : buffer(buffer), name(std::move(name)), size(size), offset(buffer->reserve(size)) {
     }
 }

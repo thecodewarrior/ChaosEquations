@@ -18,6 +18,6 @@ find_library(OPENGL_LIBRARY OpenGL)
 find_package(Boost 1.73.0 REQUIRED COMPONENTS filesystem)
 include_directories(${Boost_INCLUDE_DIRS})
 
-add_executable(ChaosEquations src/main.cpp src/Game.cpp src/Game.h src/utils.cpp src/utils.h src/albedo/Shader.cpp src/albedo/Shader.h src/common_gl.h src/albedo/ShaderPreprocessor.cpp src/albedo/ShaderPreprocessor.h src/albedo/VertexBuffer.cpp src/albedo/VertexBuffer.h src/albedo/VertexAttribute.cpp src/albedo/VertexAttribute.h src/albedo/RenderType.cpp src/albedo/RenderType.h src/SimpleRenderType.cpp src/SimpleRenderType.h src/albedo/VertexAttributeImpl.h src/albedo/vertex_attributes.h)
+add_executable(ChaosEquations src/main.cpp src/Game.cpp src/Game.h src/utils.cpp src/utils.h src/albedo/Shader.cpp src/albedo/Shader.h src/common_gl.h src/albedo/ShaderPreprocessor.cpp src/albedo/ShaderPreprocessor.h src/albedo/VertexBuffer.cpp src/albedo/VertexBuffer.h src/albedo/VertexAttribute.cpp src/albedo/VertexAttribute.h src/albedo/RenderBuffer.cpp src/albedo/RenderBuffer.h src/SimpleRenderBuffer.cpp src/SimpleRenderBuffer.h src/albedo/vertex_attributes.h src/albedo/Uniform.cpp src/albedo/Uniform.h src/albedo/uniforms.h src/albedo/uniform_type.h)
 
 target_link_libraries(ChaosEquations PRIVATE glfw glm::glm fmt::fmt ${OPENGL_LIBRARY} ${Boost_LIBRARIES})
