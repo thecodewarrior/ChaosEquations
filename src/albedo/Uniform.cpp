@@ -13,7 +13,7 @@ GLuint TextureUnitAllocator::reserve(GLenum target, GLuint texture) {
 }
 
 void TextureUnitAllocator::bind() {
-    for(auto &[info, unit] : texture_units) {
+    for (auto &[info, unit] : texture_units) {
         glActiveTexture(GL_TEXTURE0 + unit);
         glEnable(info.target);
         glBindTexture(info.target, info.texture);
@@ -21,7 +21,7 @@ void TextureUnitAllocator::bind() {
 }
 
 void TextureUnitAllocator::unbind() {
-    for(auto &[info, unit] : texture_units) {
+    for (auto &[info, unit] : texture_units) {
         glActiveTexture(GL_TEXTURE0 + unit);
         glEnable(info.target);
         glBindTexture(info.target, 0);

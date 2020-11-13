@@ -31,5 +31,4 @@ public:
     void draw_frame();
 };
 
-
-#endif //CHAOSEQUATIONS_GAME_H
+#endif // CHAOSEQUATIONS_GAME_H

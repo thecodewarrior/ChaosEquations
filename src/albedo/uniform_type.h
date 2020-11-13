@@ -5,6 +5,9 @@
 #define GLSL_VERSION 420
 #endif
 
+namespace albedo {
+
+// clang-format off
 enum uniform_type {
 #if GLSL_VERSION >= 110
     /* GLSL 1.10 - OpenGL 2.0 */
@@ -64,5 +67,8 @@ enum uniform_type {
     glsl_uimage1DArray, glsl_uimage2DArray, glsl_uimageBuffer, glsl_uimage2DMS, glsl_uimage2DMSArray,
 #endif
 };
+// clang-format on
 
-#endif //CHAOSEQUATIONS_UNIFORM_TYPE_H
+} // namespace albedo
+
+#endif // CHAOSEQUATIONS_UNIFORM_TYPE_H

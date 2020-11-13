@@ -6,16 +6,13 @@
 
 Game::Game(GLFWwindow *window, fs::path resources_dir) : window(window), resources_dir(std::move(resources_dir)) {
     glViewport(0, 0, 800, 600);
-    glfwSetFramebufferSizeCallback(window, [](GLFWwindow *window, int width, int height) {
-        glViewport(0, 0, width, height);
-    });
+    glfwSetFramebufferSizeCallback(window,
+                                   [](GLFWwindow *window, int width, int height) { glViewport(0, 0, width, height); });
 
     setup();
 }
 
-Game::~Game() {
-    glfwTerminate();
-}
+Game::~Game() { glfwTerminate(); }
 
 void Game::run() {
     while (!glfwWindowShouldClose(window)) {
@@ -28,11 +25,7 @@ void Game::run() {
 }
 
 void Game::setup() {
-    float vertices[]{
-            -0.5, -0.5, 0.0,
-            0.5, -0.5, 0.0,
-            0.0, 0.5, 0.0
-    };
+    float vertices[]{-0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.0, 0.5, 0.0};
 
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
@@ -61,7 +54,7 @@ void Game::draw_frame() {
 
     simple_buffer->time->set(glfwGetTime());
     simple_buffer->pos(-0.5, -0.5, 0.0).color(1, 0, 0, 1).end_vertex();
-    simple_buffer->pos( 0.5, -0.5, 0.0).color(0, 1, 0, 1).end_vertex();
-    simple_buffer->pos( 0.0,  0.5, 0.0).color(0, 0, 1, 1).end_vertex();
+    simple_buffer->pos(0.5, -0.5, 0.0).color(0, 1, 0, 1).end_vertex();
+    simple_buffer->pos(0.0, 0.5, 0.0).color(0, 0, 1, 1).end_vertex();
     simple_buffer->draw(GL_TRIANGLES);
 }

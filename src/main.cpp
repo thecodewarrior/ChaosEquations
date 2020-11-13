@@ -1,8 +1,8 @@
 #include <boost/filesystem.hpp>
 
-#include <iostream>
 #include "Game.h"
 #include "common_gl.h"
+#include <iostream>
 
 namespace fs = boost::filesystem;
 

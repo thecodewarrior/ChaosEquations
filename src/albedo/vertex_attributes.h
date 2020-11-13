@@ -87,7 +87,6 @@
     } \
     ;
 
-
 namespace albedo {
 
 // === floats ===
@@ -250,4 +249,4 @@ ALBEDO_ATTRIBUTE_END
 #undef ALBEDO_ATTRIBUTE_SETTER_GLM_4
 #undef ALBEDO_ATTRIBUTE_END
 
-#endif //CHAOSEQUATIONS_VERTEX_ATTRIBUTES_H
+#endif // CHAOSEQUATIONS_VERTEX_ATTRIBUTES_H

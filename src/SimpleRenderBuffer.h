@@ -10,13 +10,12 @@ private:
     std::shared_ptr<albedo::VertexAttribute<GL_FLOAT, 4>> color_attr;
 
 public:
-    std::shared_ptr<albedo::Uniform<glsl_float>> time;
+    std::shared_ptr<albedo::Uniform<albedo::glsl_float>> time;
 
     explicit SimpleRenderBuffer(const std::shared_ptr<albedo::Shader> &shader);
 
     ALBEDO_BUFFER_BUILDER(SimpleRenderBuffer, pos, pos_attr)
     ALBEDO_BUFFER_BUILDER(SimpleRenderBuffer, color, color_attr)
 };
-
 
 #endif // CHAOSEQUATIONS_SIMPLERENDERBUFFER_H

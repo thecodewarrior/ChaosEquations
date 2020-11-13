@@ -1,7 +1,6 @@
 #ifndef CHAOSEQUATIONS_COMMON_GL_H
 #define CHAOSEQUATIONS_COMMON_GL_H
 
-
 //#define GLFW_INCLUDE_GLU
 
 #if defined(__APPLE__)
@@ -22,4 +21,4 @@
 
 #include <GLFW/glfw3.h>
 
-#endif //CHAOSEQUATIONS_COMMON_GL_H
+#endif // CHAOSEQUATIONS_COMMON_GL_H
