@@ -1,5 +1,4 @@
-#include "ShaderPreprocessor.h"
-#include "../utils.h"
+#include <albedo/ShaderPreprocessor.h>
 #include <fmt/core.h>
 #include <iostream>
 #include <regex>

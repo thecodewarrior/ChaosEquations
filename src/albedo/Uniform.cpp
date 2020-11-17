@@ -1,4 +1,4 @@
-#include "Uniform.h"
+#include <albedo/Uniform.h>
 
 namespace albedo {
 

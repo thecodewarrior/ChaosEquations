@@ -14,7 +14,7 @@
 #include <glm/vec3.hpp>
 #include <glm/vec4.hpp>
 
-#include "../common_gl.h"
+#include "opengl.h"
 #include "Uniform.h"
 #include "uniform_type.h"
 

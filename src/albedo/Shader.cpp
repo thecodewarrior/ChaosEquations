@@ -1,11 +1,8 @@
-#include "Shader.h"
-#include "../common_gl.h"
-#include "../utils.h"
-#include "ShaderPreprocessor.h"
+#include <albedo/Shader.h>
+#include <albedo/opengl.h>
+#include <albedo/ShaderPreprocessor.h>
 #include <fmt/core.h>
 #include <iostream>
-#include <regex>
-#include <utility>
 
 namespace albedo {
 

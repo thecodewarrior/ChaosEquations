@@ -1,7 +1,7 @@
 #ifndef CHAOSEQUATIONS_SHADER_H
 #define CHAOSEQUATIONS_SHADER_H
 
-#include "../common_gl.h"
+#include "opengl.h"
 #include <boost/filesystem.hpp>
 #include <sstream>
 #include <utility>

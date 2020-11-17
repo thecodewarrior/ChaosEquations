@@ -1,7 +1,7 @@
 #ifndef CHAOSEQUATIONS_UNIFORM_H
 #define CHAOSEQUATIONS_UNIFORM_H
 
-#include "../common_gl.h"
+#include "opengl.h"
 #include "uniform_type.h"
 #include <map>
 #include <string>

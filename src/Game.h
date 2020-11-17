@@ -2,9 +2,12 @@
 #define CHAOSEQUATIONS_GAME_H
 
 #include "SimpleRenderBuffer.h"
-#include "albedo/Shader.h"
-#include "common_gl.h"
+#include <albedo/Shader.h>
+#include <albedo/opengl.h>
 #include <boost/filesystem.hpp>
+#include <facade/FacadeRenderer.h>
+#include <facade/FacadeScreen.h>
+#include <facade/Layer.h>
 
 namespace fs = boost::filesystem;
 
@@ -12,10 +15,7 @@ class Game {
 private:
     GLFWwindow *window;
     fs::path resources_dir;
-    GLuint vbo;
-    GLuint vao;
-    std::shared_ptr<albedo::Shader> simple_shader;
-    std::unique_ptr<SimpleRenderBuffer> simple_buffer;
+    std::shared_ptr<facade::Layer> test_layer;
 
 public:
     Game(GLFWwindow *window, fs::path resources_dir);

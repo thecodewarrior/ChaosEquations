@@ -1,7 +1,7 @@
 #ifndef CHAOSEQUATIONS_VERTEXBUFFER_H
 #define CHAOSEQUATIONS_VERTEXBUFFER_H
 
-#include "../common_gl.h"
+#include "opengl.h"
 #include <cstddef>
 #include <vector>
 

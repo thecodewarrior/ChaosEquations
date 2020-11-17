@@ -1,4 +1,4 @@
-#include "VertexBuffer.h"
+#include <albedo/VertexBuffer.h>
 #include <algorithm>
 
 namespace albedo {

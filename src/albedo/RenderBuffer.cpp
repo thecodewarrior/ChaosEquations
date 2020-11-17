@@ -1,4 +1,4 @@
-#include "RenderBuffer.h"
+#include <albedo/RenderBuffer.h>
 
 #include <utility>
 
