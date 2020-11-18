@@ -5,8 +5,8 @@
 #include <albedo/Shader.h>
 #include <albedo/opengl.h>
 #include <boost/filesystem.hpp>
+#include <facade/Facade.h>
 #include <facade/FacadeRenderer.h>
-#include <facade/FacadeScreen.h>
 #include <facade/GuiLayer.h>
 
 namespace fs = boost::filesystem;
