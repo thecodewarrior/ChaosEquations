@@ -30,6 +30,18 @@ void Game::setup() {
 
     rect->add(child);
 
+    auto layer1 = std::make_shared<facade::GuiLayer>();
+    layer1->add(std::make_shared<facade::GuiLayer>());
+    auto c1 = std::make_shared<facade::GuiLayer>();
+    layer1->add(c1);
+    layer1->add(std::make_shared<facade::GuiLayer>());
+    for(auto &c : *layer1) {
+        if(c == c1) {
+            layer1->remove(c1);
+        }
+        layer1->remove(c1);
+    }
+
     test_layer = rect;
 }
 

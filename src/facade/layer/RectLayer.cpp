@@ -25,9 +25,6 @@ public:
 };
 
 void RectLayer::drawLayer(glm::mat4 matrix) {
-//    static auto rect_shader = std::make_shared<albedo::Shader>(FacadeEnvironment::resources_dir,
-//                                                               "shaders/rect_layer.vert", "shaders/rect_layer.frag");
-//    static auto rect_buffer = std::make_unique<RectRenderBuffer>(rect_shader);
     static auto rect_buffer = make_buffer<RectRenderBuffer>("shaders/rect_layer.vert", "shaders/rect_layer.frag");
 
     rect_buffer->transform->set(matrix);

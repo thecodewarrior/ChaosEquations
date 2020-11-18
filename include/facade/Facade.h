@@ -6,11 +6,12 @@
 namespace facade {
 
 class Facade {
-private:
-    GuiLayer root;
-
 public:
+    const std::shared_ptr<GuiLayer> root;
+
     Facade();
+
+    void draw(glm::mat4 matrix);
 };
 
 } // namespace facade
