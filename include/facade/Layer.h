@@ -1,9 +1,7 @@
 #ifndef CHAOSEQUATIONS_LAYER_H
 #define CHAOSEQUATIONS_LAYER_H
 
-#include "Math.h"
-#include <glm/matrix.hpp>
-#include <glm/vec2.hpp>
+#include <glm/glm.hpp>
 #include <vector>
 
 namespace facade {
@@ -12,10 +10,15 @@ class Layer {
 public:
     glm::vec2 pos;
 
-    void draw(Stack<glm::mat3> &matrix);
+    void draw(glm::mat4 matrix);
+
 
 protected:
-    virtual void drawLayer(Stack<glm::mat3> &matrix) {}
+    virtual void drawLayer(glm::mat4 matrix) {}
+
+private:
+    [[nodiscard]] glm::mat3 transform_matrix() const;
+    [[nodiscard]] glm::mat4 transform_matrix_4x4() const;
 };
 
 } // namespace facade

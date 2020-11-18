@@ -6,8 +6,12 @@
 namespace facade {
 
 class RectLayer : public Layer {
+public:
     glm::vec4 color;
-    void drawLayer(Stack<glm::mat3> &matrix) override;
+    glm::vec2 size;
+
+protected:
+    void drawLayer(glm::mat4 matrix) override;
 };
 
 } // namespace facade

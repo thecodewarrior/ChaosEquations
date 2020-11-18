@@ -1,9 +1,7 @@
 #ifndef CHAOSEQUATIONS_VERTEX_ATTRIBUTES_H
 #define CHAOSEQUATIONS_VERTEX_ATTRIBUTES_H
 
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
+#include <glm/glm.hpp>
 
 #include "VertexAttribute.h"
 

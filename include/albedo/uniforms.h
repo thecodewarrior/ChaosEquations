@@ -1,22 +1,11 @@
 #ifndef CHAOSEQUATIONS_UNIFORMS_H
 #define CHAOSEQUATIONS_UNIFORMS_H
 
-#include <glm/mat2x2.hpp>
-#include <glm/mat2x3.hpp>
-#include <glm/mat2x4.hpp>
-#include <glm/mat3x2.hpp>
-#include <glm/mat3x3.hpp>
-#include <glm/mat3x4.hpp>
-#include <glm/mat4x2.hpp>
-#include <glm/mat4x3.hpp>
-#include <glm/mat4x4.hpp>
-#include <glm/vec2.hpp>
-#include <glm/vec3.hpp>
-#include <glm/vec4.hpp>
-
-#include "opengl.h"
 #include "Uniform.h"
+#include "opengl.h"
 #include "uniform_type.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #ifndef GLSL_VERSION
 #define GLSL_VERSION 420
@@ -73,9 +62,9 @@ ALBEDO_UNIFORM_VALUE_IMPL(glsl_ivec2, glm::ivec2, { glUniform2i(location, value.
 ALBEDO_UNIFORM_VALUE_IMPL(glsl_ivec3, glm::ivec3, { glUniform3i(location, value.x, value.y, value.z); })
 ALBEDO_UNIFORM_VALUE_IMPL(glsl_ivec4, glm::ivec4, { glUniform4i(location, value.x, value.y, value.z, value.w); })
 
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat2, glm::mat2x2, { glUniformMatrix2fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat3, glm::mat3x3, { glUniformMatrix3fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat4, glm::mat4x4, { glUniformMatrix4fv(location, 1, GL_FALSE, &value[0][0]); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat2, glm::mat2x2, { glUniformMatrix2fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat3, glm::mat3x3, { glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat4, glm::mat4x4, { glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
 
 ALBEDO_UNIFORM_SAMPLER_IMPL(glsl_sampler1D, GL_TEXTURE_1D)
 ALBEDO_UNIFORM_SAMPLER_IMPL(glsl_sampler2D, GL_TEXTURE_2D)
@@ -88,12 +77,12 @@ ALBEDO_UNIFORM_SAMPLER_IMPL(glsl_samplerCube, GL_TEXTURE_CUBE_MAP)
     + mat2x3, mat2x4, mat3x2, mat3x4, mat4x2, mat4x3
 */
 #if GLSL_VERSION >= 120
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat2x3, glm::mat2x3, { glUniformMatrix2x3fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat2x4, glm::mat2x4, { glUniformMatrix2x4fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat3x2, glm::mat3x2, { glUniformMatrix3x2fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat3x4, glm::mat3x4, { glUniformMatrix3x4fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat4x2, glm::mat4x2, { glUniformMatrix4x2fv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat4x3, glm::mat4x3, { glUniformMatrix4x3fv(location, 1, GL_FALSE, &value[0][0]); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat2x3, glm::mat2x3, { glUniformMatrix2x3fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat2x4, glm::mat2x4, { glUniformMatrix2x4fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat3x2, glm::mat3x2, { glUniformMatrix3x2fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat3x4, glm::mat3x4, { glUniformMatrix3x4fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat4x2, glm::mat4x2, { glUniformMatrix4x2fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_mat4x3, glm::mat4x3, { glUniformMatrix4x3fv(location, 1, GL_FALSE, glm::value_ptr(value)); })
 #endif
 
 /* GLSL 1.30 - OpenGL 3.0
@@ -175,15 +164,15 @@ ALBEDO_UNIFORM_VALUE_IMPL(glsl_double, double, { glUniform1d(location, value); }
 ALBEDO_UNIFORM_VALUE_IMPL(glsl_dvec2, glm::dvec2, { glUniform2d(location, value.x, value.y); })
 ALBEDO_UNIFORM_VALUE_IMPL(glsl_dvec3, glm::dvec3, { glUniform3d(location, value.x, value.y, value.z); })
 ALBEDO_UNIFORM_VALUE_IMPL(glsl_dvec4, glm::dvec4, { glUniform4d(location, value.x, value.y, value.z, value.w); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat2, glm::dmat2x2, { glUniformMatrix2dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat3, glm::dmat3x3, { glUniformMatrix3dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat4, glm::dmat4x4, { glUniformMatrix4dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat2x3, glm::dmat2x3, { glUniformMatrix2x3dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat2x4, glm::dmat2x4, { glUniformMatrix2x4dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat3x2, glm::dmat3x2, { glUniformMatrix3x2dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat3x4, glm::dmat3x4, { glUniformMatrix3x4dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat4x2, glm::dmat4x2, { glUniformMatrix4x2dv(location, 1, GL_FALSE, &value[0][0]); })
-ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat4x3, glm::dmat4x3, { glUniformMatrix4x3dv(location, 1, GL_FALSE, &value[0][0]); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat2, glm::dmat2x2, { glUniformMatrix2dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat3, glm::dmat3x3, { glUniformMatrix3dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat4, glm::dmat4x4, { glUniformMatrix4dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat2x3, glm::dmat2x3, { glUniformMatrix2x3dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat2x4, glm::dmat2x4, { glUniformMatrix2x4dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat3x2, glm::dmat3x2, { glUniformMatrix3x2dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat3x4, glm::dmat3x4, { glUniformMatrix3x4dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat4x2, glm::dmat4x2, { glUniformMatrix4x2dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
+ALBEDO_UNIFORM_VALUE_IMPL(glsl_dmat4x3, glm::dmat4x3, { glUniformMatrix4x3dv(location, 1, GL_FALSE, glm::value_ptr(value)); })
 
 ALBEDO_UNIFORM_SAMPLER_IMPL(glsl_samplerCubeShadow, GL_TEXTURE_CUBE_MAP)
 ALBEDO_UNIFORM_SAMPLER_IMPL(glsl_samplerCubeArray, GL_TEXTURE_CUBE_MAP_ARRAY)
