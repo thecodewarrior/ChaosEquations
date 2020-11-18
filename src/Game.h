@@ -7,7 +7,7 @@
 #include <boost/filesystem.hpp>
 #include <facade/FacadeRenderer.h>
 #include <facade/FacadeScreen.h>
-#include <facade/Layer.h>
+#include <facade/GuiLayer.h>
 
 namespace fs = boost::filesystem;
 
@@ -15,7 +15,7 @@ class Game {
 private:
     GLFWwindow *window;
     fs::path resources_dir;
-    std::shared_ptr<facade::Layer> test_layer;
+    std::shared_ptr<facade::GuiLayer> test_layer;
 
 public:
     Game(GLFWwindow *window, fs::path resources_dir);

@@ -1,14 +1,13 @@
 #ifndef CHAOSEQUATIONS_RECTLAYER_H
 #define CHAOSEQUATIONS_RECTLAYER_H
 
-#include <facade/Layer.h>
+#include <facade/GuiLayer.h>
 
 namespace facade {
 
-class RectLayer : public Layer {
+class RectLayer : public GuiLayer {
 public:
     glm::vec4 color;
-    glm::vec2 size;
 
 protected:
     void drawLayer(glm::mat4 matrix) override;

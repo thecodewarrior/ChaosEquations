@@ -4,6 +4,7 @@
 #include <cmath>
 #include <facade/layer/RectLayer.h>
 #include <liblib/Math.h>
+#include <liblib/Colors.h>
 
 Game::Game(GLFWwindow *window, fs::path resources_dir) : window(window), resources_dir(std::move(resources_dir)) {
     glViewport(0, 0, 800, 600);
@@ -26,8 +27,12 @@ void Game::run() {
 
 void Game::setup() {
     auto rect = std::make_shared<facade::RectLayer>();
+    rect->color = ll::colors::red;
     rect->size = {100, 100};
     rect->pos = {100, 100};
+    rect->rotation = glm::radians(15.);
+    rect->scale.y = 1.5;
+
     test_layer = rect;
 }
 

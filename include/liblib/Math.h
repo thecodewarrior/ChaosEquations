@@ -6,11 +6,9 @@
 
 namespace ll {
 
-//region 4x4 matrix transforms (which just forward to glm)
+// region 4x4 matrix transforms (which just forward to glm)
 /// Builds an identity matrix.
-template <typename genType> inline constexpr genType identity() {
-    return glm::identity<genType>();
-}
+template <typename genType> inline constexpr genType identity() { return glm::identity<genType>(); }
 
 /// Builds a translation 4 * 4 matrix created from a vector of 3 components.
 ///
@@ -70,9 +68,9 @@ template <typename T, glm::qualifier Q>
 inline glm::mat<4, 4, T, Q> scale(glm::mat<4, 4, T, Q> const &m, glm::vec<3, T, Q> const &v) {
     return glm::scale<T, Q>(m, v);
 }
-//endregion
+// endregion
 
-//region 3x3 matrix transforms
+// region 3x3 matrix transforms
 /// Builds a translation 3 * 3 matrix created from a vector of 2 components.
 ///
 /// @param m Input matrix multiplied by this translation matrix.
@@ -105,8 +103,7 @@ inline glm::mat<3, 3, T, Q> translate(glm::mat<3, 3, T, Q> const &m, glm::vec<2,
 /// @tparam Q A value from qualifier enum
 ///
 /// @see <a href="https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glRotate.xml">glRotate man page</a>
-template <typename T, glm::qualifier Q>
-inline glm::mat<3, 3, T, Q> rotate(glm::mat<3, 3, T, Q> const &m, T angle) {
+template <typename T, glm::qualifier Q> inline glm::mat<3, 3, T, Q> rotate(glm::mat<3, 3, T, Q> const &m, T angle) {
     T const a = angle;
     T const c = cos(a);
     T const s = sin(a);
@@ -133,7 +130,17 @@ inline glm::mat<3, 3, T, Q> scale(glm::mat<3, 3, T, Q> const &m, glm::vec<2, T, 
     result[2] = m[2];
     return result;
 }
-//endregion
+// endregion
+
+/// Extends a 3x3 (XY) transformation matrix into a 4x4 (XYZ) transformation matrix
+///
+/// @param m Matrix to convert
+///
+/// @tparam T A floating-point scalar type
+/// @tparam Q A value from qualifier enum
+template <typename T, glm::qualifier Q> inline glm::mat<4, 4, T, Q> extend_transform(glm::mat<3, 3, T, Q> const &m) {
+    return {{m[0][0], m[0][1], 0, 0}, {m[1][0], m[1][1], 0, 0}, {0, 0, 1, 0}, {m[2][0], m[2][1], 0, 1}};
+}
 
 } // namespace ll
 
