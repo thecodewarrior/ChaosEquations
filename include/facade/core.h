@@ -1,0 +1,6 @@
+#ifndef CHAOSEQUATIONS_CORE_H
+#define CHAOSEQUATIONS_CORE_H
+
+#include "GuiLayer.h"
+
+#endif // CHAOSEQUATIONS_CORE_H

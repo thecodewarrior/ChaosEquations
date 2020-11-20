@@ -1,6 +1,7 @@
 #include <boost/filesystem.hpp>
 
-#include "Game.h"
+#include "TestScreen.h"
+#include "Window.h"
 #include <albedo/opengl.h>
 #include <iostream>
 
@@ -27,18 +28,20 @@ int main(int argc, char **argv) {
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
 
-    GLFWwindow *window = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
-    if (window == nullptr) {
+    GLFWwindow *window_handle = glfwCreateWindow(800, 600, "LearnOpenGL", nullptr, nullptr);
+    if (window_handle == nullptr) {
         std::cout << "Failed to create GLFW window" << std::endl;
         glfwTerminate();
         return -1;
     }
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(window_handle);
 
-    Game *game = new Game(window, resources_dir);
+    facade::FacadeEnvironment::resources_dir = resources_dir / "facade";
 
-    game->run();
+    auto screen = std::make_shared<TestScreen>();
+    auto window = std::make_unique<Window>(window_handle, screen);
 
-    delete game;
+    window->run();
+
     return 0;
 }

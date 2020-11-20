@@ -3,7 +3,9 @@
 
 namespace facade {
 
-class FacadeRenderer {};
+class FacadeRenderer {
+
+};
 
 } // namespace facade
 

@@ -12,6 +12,10 @@ public:
     Facade();
 
     void draw(glm::mat4 matrix);
+
+    void keyPressed();
+    void keyReleased();
+    void characterTyped();
 };
 
 } // namespace facade

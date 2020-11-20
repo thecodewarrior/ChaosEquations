@@ -1,6 +1,7 @@
-#ifndef CHAOSEQUATIONS_GAME_H
-#define CHAOSEQUATIONS_GAME_H
+#ifndef CHAOSEQUATIONS_WINDOW_H
+#define CHAOSEQUATIONS_WINDOW_H
 
+#include "Screen.h"
 #include "SimpleRenderBuffer.h"
 #include <albedo/Shader.h>
 #include <albedo/opengl.h>
@@ -11,24 +12,25 @@
 
 namespace fs = boost::filesystem;
 
-class Game {
+class Window {
 private:
     GLFWwindow *window;
-    fs::path resources_dir;
-    std::shared_ptr<facade::GuiLayer> test_layer;
 
 public:
-    Game(GLFWwindow *window, fs::path resources_dir);
+    std::unique_ptr<facade::Facade> facade;
+    std::shared_ptr<Screen> screen;
 
-    ~Game();
+    Window(GLFWwindow *window, const std::shared_ptr<Screen>& screen);
+    ~Window();
 
     void run();
 
-    void setup();
+private:
+    void setup_callbacks();
 
     void process_input();
 
     void draw_frame();
 };
 
-#endif // CHAOSEQUATIONS_GAME_H
+#endif // CHAOSEQUATIONS_WINDOW_H
