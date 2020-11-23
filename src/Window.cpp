@@ -1,46 +1,38 @@
 #include "Window.h"
-#include "facade/FacadeEnvironment.h"
 
-#include <cmath>
-#include <utility>
 #include <facade/layer/RectLayer.h>
-#include <liblib/Colors.h>
-#include <liblib/Math.h>
+#include <utility>
 
-Window::Window(GLFWwindow *window, const std::shared_ptr<Screen>& screen)
-    : window(window), screen(screen), facade(std::make_unique<facade::Facade>()) {
+Window::Window(GLFWwindow *window_handle) : window_handle(window_handle) {
     glViewport(0, 0, 800, 600);
 
-    facade->root->add(this->screen->root);
-    setup_callbacks();
+    glfwSetWindowUserPointer(window_handle, this);
+
+    glfwSetKeyCallback(window_handle, _glfw_key_callback);
+    glfwSetCharCallback(window_handle, _glfw_char_callback);
+    glfwSetCursorPosCallback(window_handle, _glfw_cursor_pos_callback);
+    glfwSetMouseButtonCallback(window_handle, _glfw_mouse_button_callback);
+    glfwSetScrollCallback(window_handle, _glfw_scroll_callback);
+    glfwSetFramebufferSizeCallback(window_handle, _glfw_framebuffer_size_callback);
 }
 
 Window::~Window() { glfwTerminate(); }
 
-void Window::setup_callbacks() {}
+void Window::set_framerate(int fps) {
+    using namespace std::chrono;
+    frame_duration = duration_cast<ll::spin_sleep_clock::duration>(seconds(1)) / fps;
+}
 
 void Window::run() {
-    while (!glfwWindowShouldClose(window)) {
-        process_input();
-        draw_frame();
+    while (!glfwWindowShouldClose(window_handle)) {
+        auto next_frame = ll::spin_sleep_clock::now() + frame_duration;
 
-        glfwSwapBuffers(window);
+        update();
+        draw();
+
+        glfwSwapBuffers(window_handle);
         glfwPollEvents();
+
+        ll::spin_sleep_until(next_frame);
     }
-}
-
-void Window::process_input() {
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-}
-
-void Window::draw_frame() {
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT);
-
-    glm::mat4 projection_matrix = glm::ortho<float>(0, 800, 600, 0, -100, 100);
-    // flipping the Y axis flips the handedness, so the winding has to flip to remain logically CCW
-    glFrontFace(GL_CW);
-
-    facade->draw(projection_matrix);
 }

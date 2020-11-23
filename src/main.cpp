@@ -1,5 +1,6 @@
 #include <boost/filesystem.hpp>
 
+#include "FacadeWindow.h"
 #include "TestScreen.h"
 #include "Window.h"
 #include <albedo/opengl.h>
@@ -9,7 +10,7 @@ namespace fs = boost::filesystem;
 
 int main(int argc, char **argv) {
     if (argc < 2) {
-        std::cerr << "Missing resources directory parameter";
+        std::cerr << "Missing resources directory argument";
         return 1;
     }
 
@@ -39,7 +40,7 @@ int main(int argc, char **argv) {
     facade::FacadeEnvironment::resources_dir = resources_dir / "facade";
 
     auto screen = std::make_shared<TestScreen>();
-    auto window = std::make_unique<Window>(window_handle, screen);
+    auto window = std::make_unique<FacadeWindow>(window_handle, screen);
 
     window->run();
 
