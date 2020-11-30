@@ -4,6 +4,7 @@
 #include <utility>
 
 Window::Window(GLFWwindow *window_handle) : window_handle(window_handle) {
+    set_framerate(60);
     glViewport(0, 0, 800, 600);
 
     glfwSetWindowUserPointer(window_handle, this);

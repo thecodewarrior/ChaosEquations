@@ -18,5 +18,13 @@ TestScreen::TestScreen() {
 
     rect->add(child);
 
+    rect->on_update.connect([rect]() {
+        rect->color = rect->mouse_over ? ll::colors::red : ll::colors::pink;
+    });
+
+    child->on_update.connect([child]() {
+        child->color = child->mouse_over ? ll::colors::blue : ll::colors::cyan;
+    });
+
     root->add(rect);
 }

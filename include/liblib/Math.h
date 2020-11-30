@@ -142,6 +142,32 @@ template <typename T, glm::qualifier Q> inline glm::mat<4, 4, T, Q> extend_trans
     return {{m[0][0], m[0][1], 0, 0}, {m[1][0], m[1][1], 0, 0}, {0, 0, 1, 0}, {m[2][0], m[2][1], 0, 1}};
 }
 
+/// Applies a 3x3 augmented transformation matrix to a 2d vector
+///
+/// @param m Matrix to apply
+/// @param v Vector to transform
+/// @param a The augmented term of the vector.
+///
+/// @tparam T A floating-point scalar type
+/// @tparam Q A value from qualifier enum
+template <typename T, glm::qualifier Q>
+inline glm::vec<2, T, Q> transform(glm::mat<3, 3, T, Q> const &m, glm::vec<2, T, Q> const &v, T a = 1) {
+    return glm::vec<2, T, Q>(m * glm::vec<3, T, Q>(v, a));
+}
+
+/// Applies a 4x4 augmented transformation matrix to a 3d vector
+///
+/// @param m Matrix to apply
+/// @param v Vector to transform
+/// @param a The augmented term of the vector.
+///
+/// @tparam T A floating-point scalar type
+/// @tparam Q A value from qualifier enum
+template <typename T, glm::qualifier Q>
+inline glm::vec<3, T, Q> transform(glm::mat<4, 4, T, Q> const &m, glm::vec<3, T, Q> const &v, T a = 1) {
+    return glm::vec<3, T, Q>(m * glm::vec<4, T, Q>(v, a));
+}
+
 } // namespace ll
 
 #endif // CHAOSEQUATIONS_MATH_H

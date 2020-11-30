@@ -18,3 +18,14 @@ void FacadeWindow::draw() {
 
     facade->draw(projection_matrix);
 }
+void FacadeWindow::update() { facade->update(); }
+void FacadeWindow::glfw_key(int key, int scancode, int action, int mods) {
+    facade->glfw_key(key, scancode, action, mods);
+}
+void FacadeWindow::glfw_char(unsigned int codepoint) { facade->glfw_char(codepoint); }
+void FacadeWindow::glfw_cursor_pos(double xpos, double ypos) { facade->glfw_cursor_pos(xpos, ypos); }
+void FacadeWindow::glfw_mouse_button(int button, int action, int mods) {
+    facade->glfw_mouse_button(button, action, mods);
+}
+void FacadeWindow::glfw_scroll(double xoffset, double yoffset) { facade->glfw_scroll(xoffset, yoffset); }
+void FacadeWindow::glfw_framebuffer_size(int width, int height) { facade->glfw_framebuffer_size(width, height); }
